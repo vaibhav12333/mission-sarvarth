@@ -67,6 +67,7 @@
             </div>
             <button type="button" class="btn btn-primary" onclick="modifyPdf()">Submit</button>
           </form>
+        
         </div>
       </div>
      </div>
@@ -116,7 +117,6 @@
       
       if (selectedRadioButton) {
         clas = selectedRadioButton.value;
-        
       } else {
         console.log('No Class selected');
       }
@@ -192,13 +192,28 @@
         })
         // Serialize the PDFDocument to bytes (a Uint8Array)
         const pdfBytes = await pdfDoc.save()
-        sendEmail(email,pdfBytes)
+        console.log(pdfBytes)
+        var blob = pdfBytesToBlob(pdfBytes);
+
+// Create a download link dynamically
+var a = document.createElement('a');
+a.href = URL.createObjectURL(blob);
+a.download = 'missionSarvarth.pdf';
+
+// Trigger the download
+a.click();
+       
+
         // Trigger the browser to download the PDF document
-        download(pdfBytes, "pdf-lib_modification_example.pdf", "application/pdf");
+        // download(pdfBytes, "missionSarvarth.pdf", "application/pdf");
       }
       // Install the 'nodemailer' package using npm: npm install nodemailer
       
-      
+      function pdfBytesToBlob(pdfBytes) {
+  var byteArray = new Uint8Array(pdfBytes);
+  var blob = new Blob([byteArray], { type: 'application/pdf' });
+  return blob;
+}
       
       // Function to send the form values via email
       async function sendFormValuesViaEmail(email,pdfBytes) {
