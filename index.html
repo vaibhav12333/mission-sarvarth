@@ -1,0 +1,234 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://unpkg.com/pdf-lib@1.4.0"></script>
+    <script src="https://unpkg.com/downloadjs@1.4.7"></script>
+    <link rel="stylesheet" type="text/css" href="./index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="container-fluid width d-flex align-items-center justify-content-center">
+     <div class = "row" >
+      <div class="col-12">
+        <div class="jumbo" ></div>
+        <div class="border p-5 mb-4 bg-light">
+          <h2>MISSION SARVARTH SEVA FOUNDATION (Regd)</h2>
+          <br />
+          <p>
+            MISSION SARVARTH SEVA FOUNDATION (Regd) is a Non-government Organisation established by Dr.Basant Goel (Chairman), Shri Sandeep Garg (President), Shri  Ajay Gupta (VicePresident), Shri Gaurav Garg (Vice-President), Shri Dheeraj Yadav (Vice-president), Shri Neeraj Mittal (Treasurer), Shri Pankaj Sharma (Co-Treasurer), Shri Ashwani Sharma (General secretary), Shri Amit Garg (Secretary), Shri Manish Aggarwal (Secretary), Shri Atul Mudgal (Advertisement & Media Incharge), Shri Shankar Aggarwal (Convener), Shri Aman Garg(Convener) for the welfare of the society 
+          </p>
+          <br />
+          <p>IDEA OF N.G.O: Dr. Basant Goel is the Proprietor &; Chairman of INDIA ‘s no.1 Pharmacy “Goel Medicos” Durgapuri Extn. Loni Road Shahdara Delhi who is always available for the welfare of mankind. He is also Known as the “King of Medicines” ; the great social worker in INDIA. He regularly with different N.G.O, Institutions, Hospitals organized various Blood Camp, Free Health Checkups, Eye Checkups, Free Distribution of Medicines to the Hospitals. He organized many mega blood camp in a year, so that he can helps many people as lakh of people are died due to shortage of Blood every year, In the corona time, when there is the shortage of Blood in Delhi, he organized a blood camp & help the blood banks to recover from this, there after he himself registered a N.G.O with his friends who always support & stand with him in all social works. </p>
+        </div >
+        <div class="form border p-4 bg-light ">
+          <form>
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" class="form-control" id="name" required>
+            </div>
+            <div class="form-group">
+              <label for="father">Father:</label>
+              <input type="text" class="form-control" id="father" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="form-group">
+              <label for="address">Address:</label>
+              <textarea class="form-control" id="address" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="school">School:</label>
+              <textarea class="form-control" id="school" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="class">Class:</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="class" id="class10" value="10th" required>
+                  <label class="form-check-label" for="class10">10th</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="class" id="class12" value="12th" required>
+                  <label class="form-check-label" for="class12">12th</label>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="percent">Percentage:</label>
+              <input type="number" class="form-control" id="percent" required>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="modifyPdf()">Submit</button>
+          </form>
+        </div>
+      </div>
+     </div>
+    </div>
+
+    <!-- Add Bootstrap JS -->
+   
+ 
+     </body>
+     <script src="https://smtpjs.com/v3/smtp.js"></script>
+     <script type="text/javascript">
+      
+
+      const { degrees, PDFDocument, rgb, StandardFonts } = PDFLib
+      function sendEmail(email,pdfBytes) {
+
+        console.log('called')
+        console.log(email)
+      Email.send({
+        Host: "smtp.gmail.com",
+        Username: "vaibhavgarg889@gmail.com",
+        Password: "A2589EC448009D62CE712DB43830A8389CE8",
+        To: email,
+        From: "missionsarvarthsevafoundation4@gmail.com",
+        Subject: "Sending Email using javascript",
+        Body: "Well that was easy!!",
+        
+      })
+        .then(function (message) {
+          alert("mail sent successfully")
+        })
+        .catch(function(message){
+          alert("mail did not sent")
+        })
+        
+    }
+      async function modifyPdf() {
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var address = document.getElementById('address').value;
+        var father = document.getElementById('father').value;
+        var school = document.getElementById('school').value;
+        var clas = document.getElementsByName('class').value;
+        var percent = document.getElementById('percent').value
+        const selectedRadioButton = document.querySelector('input[name="class"]:checked');
+      
+      
+      if (selectedRadioButton) {
+        clas = selectedRadioButton.value;
+        
+      } else {
+        console.log('No Class selected');
+      }
+        // Here, you can perform any operations you want with the form values
+        // For this example, let's just log them to the console
+        console.log('Name:', name);
+        console.log('Email:', email);
+        // console.log('Message:', message);
+      
+        // Fetch an existing PDF document
+        const url = "https://ik.imagekit.io/ufuxna3870p/mission_sarvarth/Screenshot_2023-05-19_at_9.14.39_PM_xc9uncpDM.pdf?updatedAt=1684511220335"
+       
+        
+        const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer())
+      
+        // Load a PDFDocument from the existing PDF bytes
+        const pdfDoc = await PDFDocument.load(existingPdfBytes)
+      
+        // Embed the Helvetica font
+        const helveticaFont = await pdfDoc.embedFont(StandardFonts.Courier)
+      
+        // Get the first page of the document
+        const pages = pdfDoc.getPages()
+        const firstPage = pages[0]
+      
+        // Get the width and height of the first page
+        const { width, height } = firstPage.getSize()
+      
+        // Draw a string of text diagonally across the first page
+        firstPage.drawText(name, {
+          x: (width-90)/2,
+          y: (height+30) / 2 ,
+          size: 20,
+          font: helveticaFont,
+          color: rgb(0.5, 0.5, 0.5),
+          
+        })
+        firstPage.drawText(father, {
+          x: (width - 500) / 2,
+          y: (height - 100) / 2 ,
+          size: 20,
+          font: helveticaFont,
+          color: rgb(0.5, 0.5, 0.5),
+        })
+        
+        firstPage.drawText(address, {
+          x: (width+170)/2,
+          y: (height-100)/ 2 ,
+          size: 10,
+          font: helveticaFont,
+          color: rgb(0.5, 0.5, 0.5),
+        })
+        firstPage.drawText(percent, {
+          x: (width+40)/2,
+          y: (height-330)/2 ,
+          size: 18,
+          font: helveticaFont,
+          color: rgb(0.5, 0.5, 0.5),
+        })
+        firstPage.drawText(clas, {
+          x: 180,
+          y: (height-330)/2 ,
+          size: 18,
+          font: helveticaFont,
+          color: rgb(0.5, 0.5, 0.5),
+        })
+        firstPage.drawText(school, {
+          x: (width+340)/2,
+          y: (height-330)/2 ,
+          size: 10,
+          font: helveticaFont,
+          color: rgb(0.5, 0.5, 0.5),
+        })
+        // Serialize the PDFDocument to bytes (a Uint8Array)
+        const pdfBytes = await pdfDoc.save()
+        sendEmail(email,pdfBytes)
+        // Trigger the browser to download the PDF document
+        download(pdfBytes, "pdf-lib_modification_example.pdf", "application/pdf");
+      }
+      // Install the 'nodemailer' package using npm: npm install nodemailer
+      
+      
+      
+      // Function to send the form values via email
+      async function sendFormValuesViaEmail(email,pdfBytes) {
+        // const { name, father, email, address, school, class: className, percent } = formData;
+      
+        // Compose the email message
+        const mailOptions = {
+          from: 'missionsarvarthsevafoundation4@gmail.com',
+          to: email,
+          subject: 'Form Submission',
+          attachments: [
+            {
+              filename: 'form_submission.pdf',
+              content: pdfBytes
+            }
+          ]
+        };
+      
+        try {
+          // Send the email
+          const info = await transporter.sendMail(mailOptions);
+          console.log('Email sent:', info.response);
+        } catch (error) {
+          console.log('Error occurred while sending email:', error);
+        }
+      }
+   
+      
+      // Example usage: Call sendFormValuesViaEmail with the form data
+      
+      </script>
+    
+</html>
